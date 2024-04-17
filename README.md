@@ -11,8 +11,8 @@ Deviation from blogs:
   - RUNNER_IMAGE: Could be used for Windows/macOS/Linux, Containerfile and `start.sh` would need to be to support macOS and Windows.
   - RUNNER_ARCH: Primariy the CPU architecture - x64, arm, arm64
 - Updated user to runner from docker to make it more specific to GitHub Actions runner.
-- In the `start.sh` script
-  - Updated the config.sh to run unattened and ephemeral. 
+- In the `start.sh` script:
+  - Updated the config.sh to run unattend and ephemeral. 
 
 
 ```bash
@@ -44,7 +44,7 @@ Successfully tagged localhost/actions-runner:latest
 5c982051b1c07dc67c41bcd5fb36ab3818f8bbb89dea63fe169d07d2d9d49953
 ```
 
-Run the image: 
+## Run the image
 
 To run the image you will need two environment variables, you may also need to specify a different image to use. Mine was still local when writing this up:
 
