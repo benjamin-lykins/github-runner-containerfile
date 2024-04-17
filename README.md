@@ -29,6 +29,7 @@ ARG RUNNER_VERSION="2.315.0"
 ARG RUNNER_IMAGE="linux"
 # Either x64 or arm64 or arm
 ARG RUNNER_ARCH="arm64"
+```
 
 To build the image: 
 
