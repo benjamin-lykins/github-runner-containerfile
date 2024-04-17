@@ -14,7 +14,6 @@ Deviation from blogs:
 - In the `start.sh` script:
   - Updated the config.sh to run unattend and ephemeral. 
 
-
 ```bash
 ./config.sh --url https://github.com/${REPOSITORY} --token ${REG_TOKEN} --unattended
 ```
@@ -58,7 +57,7 @@ localhost/actions-runner
 If all goes well you should see in your GitHub Actions Runners the following: 
 ![image](https://github.com/benjamin-lykins/github-runner-containerfile/assets/91494226/35a776fe-8162-4582-920a-d0733d9acc3f)
 
-The name is from the containerid: 
+The generated name is from the containerid: 
 
 ```bash
 CONTAINER ID  IMAGE                            COMMAND     CREATED        STATUS        PORTS       NAMES
@@ -111,4 +110,53 @@ Examples:
 ./config.sh --url https://github.com/${REPOSITORY} --token ${REG_TOKEN} --unattended --ephermeral
 ```
 
+## Using Compose
+If looking to create multiple containers, compose would be the quickest solution. 
+
+There is a templatized compose file created, only two variables are needed (GH_TOKEN is the PAT created for this): 
+
+```bash
+export GH_REPO=benjamin-lykins/github-runner-containerfile
+export GH_TOKEN=****
+```
+
+Once those variables are set, you can run a podman compose up. 
+
+### Compose Up
+
+When ready, run `podman compose up --detached`. (If you want to see it log, run `podman compose up`)
+
+Before running compose:
+
+![image](https://github.com/benjamin-lykins/github-runner-containerfile/assets/91494226/8409bcd2-2f9b-4dcb-99ec-54e8334e2815)
+
+
+```bash
+podman compose up --detach                                                                                                                                                                          
+>>>> Executing external compose provider "/usr/local/bin/docker-compose". Please refer to the documentation for details. <<<<
+
+[+] Running 4/4
+ ✔ Container github-runner-containerfile-runner-4  Started                                                                                                                                            0.0s 
+ ✔ Container github-runner-containerfile-runner-3  Started                                                                                                                                            0.0s 
+ ✔ Container github-runner-containerfile-runner-2  Started                                                                                                                                            0.0s 
+ ✔ Container github-runner-containerfile-runner-1  Started                                                                                                                                            0.0s
+```
+
+After running compose:
+
+![image](https://github.com/benjamin-lykins/github-runner-containerfile/assets/91494226/f12e535b-3aee-4706-9be6-d39de3a90036)
+
+
+### Compose Down
+
+If looking to stop and destory the containers run a `podman compose down`
+
+```bash
+[+] Running 5/4
+ ✔ Container github-runner-containerfile-runner-4  Removed                                                                                                                                            2.7s 
+ ✔ Container github-runner-containerfile-runner-1  Removed                                                                                                                                            3.0s 
+ ✔ Container github-runner-containerfile-runner-2  Removed                                                                                                                                            2.6s 
+ ✔ Container github-runner-containerfile-runner-3  Removed                                                                                                                                            2.7s 
+ ✔ Network github-runner-containerfile_default     Removed                                                                                                                                            0.0s
+```
 
