@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:latest
 
 ARG RUNNER_VERSION="2.315.0"
 # Only linux in this case, windows containers are probably possible, but not tested.
@@ -11,7 +11,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt update -y && apt upgrade -y && useradd -m runner
 RUN apt install -y --no-install-recommends \
-    curl jq build-essential libssl-dev libffi-dev python3 python3-venv python3-dev python3-pip
+    curl jq build-essential libssl-dev libffi-dev python3 python3-venv python3-dev python3-pip unzip
 
 
 RUN cd /home/runner && mkdir actions-runner && cd actions-runner \

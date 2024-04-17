@@ -1,10 +1,10 @@
 services:
   runner:
-    image: docker.io/library/actions-runner:latest
+    image: localhost/actions-runner:latest
     restart: always
     environment:
-      - REPO=org/repo
-      - TOKEN=token
+      - REPO=${GH_REPO}
+      - TOKEN=${GH_TOKEN}
     deploy:
       mode: replicated
       replicas: 4
