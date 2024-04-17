@@ -1,0 +1,17 @@
+services:
+  runner:
+    image: docker.io/library/actions-runner:latest
+    restart: always
+    environment:
+      - REPO=org/repo
+      - TOKEN=token
+    deploy:
+      mode: replicated
+      replicas: 4
+      resources:
+        limits:
+          cpus: '0.35'
+          memory: 300M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
