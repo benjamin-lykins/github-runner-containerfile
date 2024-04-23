@@ -1,0 +1,33 @@
+# Use an official image of your choice as a base image
+FROM ubuntu:latest
+
+# Install required packages (GitHub CLI, jq, cron)
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    ca-certificates \
+    git \
+    && apt-get install -y gnupg2 curl && \
+    curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | gpg --dearmor -o /usr/share/keyrings/githubcli-archive-keyring.gpg && \
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | tee /etc/apt/sources.list.d/github-cli.list > /dev/null && \
+    apt-get update && \
+    apt-get install -y gh jq cron && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Copy the script file into the container
+COPY check_workflows.sh /usr/local/bin/check_workflows.sh
+
+# Make the script executable
+RUN chmod +x /usr/local/bin/check_workflows.sh
+
+# Copy the cron job file into the container
+COPY cronjob /etc/cron.d/check_workflows_cronjob
+
+# Give execution rights on the cron job
+RUN chmod 0644 /etc/cron.d/check_workflows_cronjob
+
+# Apply cron job
+RUN crontab /etc/cron.d/check_workflows_cronjob
+
+# Run the cron daemon in the foreground
+CMD ["cron", "-f"]
