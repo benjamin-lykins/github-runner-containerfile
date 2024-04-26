@@ -1,2 +1,0 @@
-# Run the check_workflows.sh script every 2 minutes
-*/2 * * * * /usr/local/bin/check_workflows.sh >> /var/log/check_workflows.log 2>&1
