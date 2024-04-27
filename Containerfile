@@ -6,6 +6,12 @@ ARG RUNNER_IMAGE="linux"
 # Either x64 or arm64 or arm
 ARG RUNNER_ARCH="arm64"
 
+# Echo the argument
+RUN echo "Runner Architecture : ${RUNNER_ARCH}"
+RUN echo "Runner Version : ${RUNNER_VERSION}"
+RUN echo "Runner Image : ${RUNNER_IMAGE}"
+
+
 # Prevents installdependencies.sh from prompting the user and blocking the image creation
 ARG DEBIAN_FRONTEND=noninteractive
 
