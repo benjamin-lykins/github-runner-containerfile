@@ -10,7 +10,7 @@ ARG RUNNER_ARCH="arm64"
 RUN echo "Runner Architecture : ${RUNNER_ARCH}"
 RUN echo "Runner Version : ${RUNNER_VERSION}"
 RUN echo "Runner Image : ${RUNNER_IMAGE}"
-
+RUN echo "https://github.com/actions/runner/releases/download/v${RUNNER_VERSION}/actions-runner-${RUNNER_IMAGE}-${RUNNER_ARCH}-${RUNNER_VERSION}.tar.gz"
 
 # Prevents installdependencies.sh from prompting the user and blocking the image creation
 ARG DEBIAN_FRONTEND=noninteractive
