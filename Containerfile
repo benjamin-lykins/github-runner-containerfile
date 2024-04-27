@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 
-ARG RUNNER_VERSION="2.315.0"
+ARG RUNNER_VERSION="2.316.0"
 # Only linux in this case, windows containers are probably possible, but not tested.
 ARG RUNNER_IMAGE="linux"
 # Either x64 or arm64 or arm
