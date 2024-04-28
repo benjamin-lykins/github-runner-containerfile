@@ -17,7 +17,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt update -y && apt upgrade -y && useradd -m runner
 RUN apt install -y --no-install-recommends \
-    curl jq build-essential libssl-dev libffi-dev python3 python3-venv python3-dev python3-pip unzip
+    curl jq build-essential libssl-dev libffi-dev python3 python3-venv python3-dev python3-pip unzip libicu
 
 
 RUN cd /home/runner && mkdir actions-runner && cd actions-runner \
