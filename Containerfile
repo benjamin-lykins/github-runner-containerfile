@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:22.04
 
 ARG RUNNER_VERSION="2.316.0"
 # Only linux in this case, windows containers are probably possible, but not tested.
